@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace MovieApp.Models
 {
-    public interface IDBSource
+    public interface IRepository
     {
         List<Movie> movies { get; set; }
     }
 
-    public class JsonDBSource :  IDBSource
+    public class JsonRespository :  IRepository
     {
         public List<Movie> movies { get; set; }
 
         public string a;
 
-        public JsonDBSource()
+        public JsonRespository()
         {
             movies = new List<Movie>();
 

@@ -96,13 +96,8 @@ namespace MovieApp.Models
             //JToken t = JToken.FromObject(value);
             //t.WriteTo(writer);
 
-            //serializer.Converters.Remove(this);
-            //JToken jToken = JToken.FromObject(value, serializer);
-            //serializer.Converters.Add(this);
-
             JObject jo = new JObject();
             Type type = value.GetType();
-            //jo.Add("type", type.Name);
 
             foreach (PropertyInfo prop in type.GetProperties())
             {

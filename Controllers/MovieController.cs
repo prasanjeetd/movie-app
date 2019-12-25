@@ -13,9 +13,9 @@ namespace MovieApp.Controllers
     [ApiController]
     public class MovieController : ControllerBase
     {
-        IDBSource dbSource;
+        IRepository dbSource;
 
-        public MovieController(IDBSource dbSource)
+        public MovieController(IRepository dbSource)
         {
             this.dbSource = dbSource;
         }

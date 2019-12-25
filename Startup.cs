@@ -31,11 +31,11 @@ namespace MovieApp
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            //services.AddSingleton<IDBSource, JsonDBSource>();
-            services.AddSingleton<IDBSource>(new JsonDBSource());
+            //services.AddSingleton<IRepository, JsonRespository>();
+            services.AddSingleton<IRepository>(new JsonRespository());
 
             var sp = services.BuildServiceProvider();
-            IDBSource service = sp.GetService<IDBSource>();
+            IRepository service = sp.GetService<IRepository>();
 
         }
 
