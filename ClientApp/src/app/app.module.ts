@@ -25,10 +25,8 @@ import { MovieHomeComponent } from './movies/component';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'movie', component: MovieHomeComponent },
+      { path: '', component: MovieHomeComponent, pathMatch: 'full' },
+      { path: 'movie/:title', component: MovieHomeComponent },
     ])
   ],
   providers: [],
