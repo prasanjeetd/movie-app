@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MovieApp.Models;
+using MovieApp.Services;
 using MovieApp.Utilities.ExceptionHandling;
 
 namespace MovieApp
@@ -35,6 +36,7 @@ namespace MovieApp
 
             //services.AddSingleton<IRepository, JsonRespository>();
             services.AddSingleton<IRepository>(new JsonRespository());
+            services.AddSingleton<IMovieService, MovieService>();
 
             var sp = services.BuildServiceProvider();
             IRepository service = sp.GetService<IRepository>();

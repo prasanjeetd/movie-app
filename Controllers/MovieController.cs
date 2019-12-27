@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MovieApp.Models;
+using MovieApp.Services;
 using MovieApp.Utilities.ExceptionHandling;
 
 namespace MovieApp.Controllers
@@ -14,11 +15,11 @@ namespace MovieApp.Controllers
     [ApiController]
     public class MovieController : ControllerBase
     {
-        IRepository dbSource;
+        IMovieService service;
 
-        public MovieController(IRepository dbSource)
+        public MovieController(IMovieService service)
         {
-            this.dbSource = dbSource;
+            this.service = service;
         }
 
         [HttpGet("{pageSize:int?}")]
@@ -27,13 +28,8 @@ namespace MovieApp.Controllers
 
             try
             {
-                var result = this.dbSource.movies
-                .OrderByDescending(x => x.Year)
-                .ThenBy(x => x.Rating)
-                .Where(x => !String.IsNullOrEmpty(x.ImageUrl))
-                .Take(pageSize);
+                return StatusCode(StatusCodes.Status200OK, this.service.GetN(pageSize));
 
-                return StatusCode(StatusCodes.Status200OK, result);
             }
             catch (Exception ex)
             {
@@ -51,16 +47,14 @@ namespace MovieApp.Controllers
 
             try
             {
-                var result = this.dbSource.movies
-                .FirstOrDefault(x => x.Title.ToLower().Equals(title.ToLower()));
+                var movie = this.service.Get(title);
 
-                if (result == null)
+                if (movie == null)
                 {
-
                     return NotFound($"No movie found with the title { title}");
                 }
 
-                return Ok(result);
+                return Ok(movie);
             }
             catch (Exception ex)
             {
