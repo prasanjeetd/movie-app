@@ -11,5 +11,7 @@ namespace MovieApp.Services
         IEnumerable<Movie> GetN(int offset);
 
         Movie Get(string title);
+
+        ICollection<Movie> Find(string title, int offset = 4);
     }
 }

@@ -37,5 +37,16 @@ namespace MovieApp.Services
 
             return movies;
         }
+
+        public ICollection<Movie> Find(string title, int offset = 4)
+        {
+            var movies = this.repository.movies
+               .OrderBy(x => x.Title)
+               .ThenBy(x => x.Rating)
+               .Where(x => x.Title.StartsWith(title, StringComparison.InvariantCultureIgnoreCase))
+               .Take(offset);
+
+            return movies.ToList();
+        }
     }
 }

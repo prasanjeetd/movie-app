@@ -19,4 +19,8 @@ export class MovieApiService {
 
   }
 
+  findMovies(title): Observable<Movie[]>{
+    return this.http.post<Movie[]>(this.baseUrl + 'api/movie',{title: title});
+  }
+
 }

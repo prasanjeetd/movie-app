@@ -41,7 +41,7 @@ namespace MovieApp.Controllers
 
         [HttpGet("{title}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<Movie> Get(string title)
         {
 
@@ -59,6 +59,37 @@ namespace MovieApp.Controllers
             catch (Exception ex)
             {
                 throw;
+            }
+
+
+        }
+
+        [HttpPost()]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<IEnumerable<Movie>> Find(dynamic search)
+        {
+
+            try
+            {
+                if (search == null || search.title == null)
+                {
+                    return BadRequest($"Invalid search request");
+                }
+
+                var movies = this.service.Find(search.title.Value);
+
+                if (movies == null || movies.Count == 0)
+                {
+                    return NotFound($"No movie found with the title { search}");
+                }
+
+                return Ok(movies);
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(ex.Message);
             }
 
 

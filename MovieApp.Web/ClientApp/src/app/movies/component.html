@@ -1,13 +1,16 @@
 <h2> Movie Dashboard </h2>
 
-<p *ngIf="!movies"><em>Loading...</em></p>
+<p *ngIf="!movies$"><em>Loading...</em></p>
 
 <!-- <li *ngFor="let movie of movies | async">
   <span> {{ movie.title}}</span>
 </li> -->
 
-
-<table class='table' *ngIf="movies">
+<div>
+  <span> Search</span>
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+</div>
+<table class='table' *ngIf="movies$">
   <thead>
     <tr>
       <th>Title</th>
@@ -17,7 +20,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let movie of movies | async | slice:0:3">
+    <tr *ngFor="let movie of movies$ | async | slice:0:3">
       <td>{{ movie.title}}</td>
       <td><img class="movie-img" [src]="movie.imageUrl"> </td>
       <td>{{ movie.year }}</td>
