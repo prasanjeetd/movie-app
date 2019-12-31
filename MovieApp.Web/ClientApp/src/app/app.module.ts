@@ -10,15 +10,14 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { MovieHomeComponent } from './movies/component';
+import { MovieDetailComponent } from './movie-detail/component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
-    MovieHomeComponent
+    MovieHomeComponent,
+    MovieDetailComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -26,7 +25,7 @@ import { MovieHomeComponent } from './movies/component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: MovieHomeComponent, pathMatch: 'full' },
-      { path: 'movie/:title', component: MovieHomeComponent },
+      { path: 'movie/:title', component: MovieDetailComponent },
     ])
   ],
   providers: [],

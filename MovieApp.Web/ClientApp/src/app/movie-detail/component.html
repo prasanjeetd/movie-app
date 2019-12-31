@@ -1,0 +1,23 @@
+<a routerLink="/">
+  Movie Home
+</a>
+
+<h3> Movie Detail</h3>
+
+<table class='table'>
+  <tbody>
+    <tr>
+      <th>{{  movie.title }}</th>
+      <td><img class="movie-img" [src]="movie.imageUrl"> </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        {{ movie.plot}}
+      </td>
+    </tr>
+    <tr>
+      <td> Actors</td>
+      <td> {{  movie.actors.join()}}</td>
+    </tr>
+  </tbody>
+</table>

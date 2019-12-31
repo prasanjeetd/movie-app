@@ -17,8 +17,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let movie of movies$ | async | slice:0:3">
-      <td>{{ movie.title}}</td>
+    <tr *ngFor="let movie of movies$ | async | slice:0:4">
+      <td>
+        <a routerLink="/movie/{{movie.title}}">
+          {{ movie.title}}
+        </a>
+
+      </td>
       <td><img class="movie-img" [src]="movie.imageUrl"> </td>
       <td>{{ movie.year }}</td>
       <td>{{ movie.rank }}</td>
